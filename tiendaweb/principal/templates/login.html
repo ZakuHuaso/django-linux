@@ -1,0 +1,35 @@
+{% load static %}
+{% include "navbarplantilla.html" %}
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/estilo.css' %}">
+<style>
+  .form-container {
+    max-width: 400px; /* Ajusta el ancho según sea necesario */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+  }
+</style>
+<h3 style="text-align: center;" >Login</h3>
+<form method="POST" class="form-container">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="usuario" class="form-label" >Usuario</label>
+    <input type="name" class="form-control" id="usuario" name="usuariologin" aria-describedby="emailHelp" >
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password1login">
+    
+
+
+  </div>
+  <button type="submit" class="btn btn-primary"> Enviar </button>
+  <a type="text" class="btn btn-primary" href="{% url 'registro' %}"> Ir a Registro </a>
+</form>
+{% if messages %}
+    {% for mensaje in messages%}
+    {{mensaje}}
+    {% endfor %}
+    {% endif %}
+{% endblock %}
